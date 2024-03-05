@@ -5,11 +5,23 @@ App = FastAPI()
 
 
 class SpelerBase(BaseModel):
-    naam: str
+    naam_speler: str
     leeftijd: int
+    afkomst: str
     statistieken: int
     transferwaarde: int
-    team_naam: str
+    naam_team: str
+
+
+class TeamBase(BaseModel):
+    naam_team: str
+    competitie: str
+    totale_transferwaarde: int
+
+
+class competitieBase(BaseModel):
+    naam_competitie: str
+    land_competitie: str
 
 
 
