@@ -40,5 +40,5 @@ async def create_speler(speler:CreateSpeler) -> list[SpelerBase]:
 
 @app.delete('/spelers/{naam_speler}')
 async def delete_speler(id_speler:int) -> list[SpelerBase]:
-    deleted_speler = spelers.pop(id_speler)
+    deleted_speler = spelers.pop(int(id_speler) - 1)
     return deleted_speler
