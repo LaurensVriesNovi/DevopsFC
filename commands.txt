@@ -7,3 +7,5 @@ git branch -a (voor alle branches)
 git chechkout naam
 
 voordat je commit pull eerst!!!!
+
+uvicorn main:app --reload
