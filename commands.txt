@@ -5,3 +5,5 @@ git push
 git add .  (punt staat voor bestandnaam die je hebt aangepast)
 git branch -a (voor alle branches)
 git chechkout naam
+
+voordat je commit pull eerst!!!!
