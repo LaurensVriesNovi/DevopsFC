@@ -41,7 +41,7 @@ async def create_speler(speler:CreateSpeler) -> list[SpelerBase]:
 @app.delete('/spelers/{speler_id}')
 async def delete_speler(id_speler: int) -> SpelerBase:
     global spelers
-    for speler_id, in range(len(spelers)):
+    for speler_id in range(len(spelers)):
         speler = spelers[speler_id]
         if speler['id_speler'] == id_speler:
             deleted_speler = spelers.pop(speler_id)
