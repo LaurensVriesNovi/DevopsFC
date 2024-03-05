@@ -1,2 +1,2 @@
-Hallo Sam alles goed :)
-lean heeft een goede dag
+from fastapi import FastAPI
+
