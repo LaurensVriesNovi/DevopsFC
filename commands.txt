@@ -1,7 +1,5 @@
-Jo
-jo
-
-
-halloooo
-
-hello
+pip install -r requirements.txt
+git pull
+git commit -m "uitleg wat veranderd"
+git push
+git add .  (punt staat voor bestandnaam die je hebt aangepast)
