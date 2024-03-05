@@ -4,11 +4,12 @@ from typing import List
 app = FastAPI()
 
 spelers = [
-    {'naam_speler':  'Laurens', 'leeftijd': 24, 'afkomst': 'Nederland', 'statistieken': 55, 'transferwaarde': 20,
+    {'id_speler': 1, 'naam_speler':  'Laurens', 'leeftijd': 24, 'afkomst': 'Nederland', 'statistieken': 55, 'transferwaarde': 20,
      'naam_team': 'Ajax'},
 ]
 
 class SpelerBase(BaseModel):
+    id_speler: int
     naam_speler: str
     leeftijd: int
     afkomst: str
@@ -36,3 +37,8 @@ async def get_spelers() -> list[SpelerBase]:
 async def create_speler(speler:CreateSpeler) -> list[SpelerBase]:
     spelers.append(speler)
     return spelers
+
+@app.delete('/spelers/{naam_speler}')
+async def delete_speler(id_speler:int) -> list[SpelerBase]:
+    deleted_speler = spelers.pop(id_speler)
+    return deleted_speler
