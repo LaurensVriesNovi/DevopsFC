@@ -38,7 +38,11 @@ async def create_speler(speler:CreateSpeler) -> list[SpelerBase]:
     spelers.append(speler)
     return spelers
 
-@app.delete('/spelers/{naam_speler}')
-async def delete_speler(id_speler:int) -> list[SpelerBase]:
-    deleted_speler = spelers.pop(int(id_speler) - 1)
-    return deleted_speler
+@app.delete('/spelers/{speler_id}')
+async def delete_speler(id_speler: int) -> SpelerBase:
+    global spelers
+    for idx, speler in enumerate(spelers):
+        if speler['id_speler'] == id_speler:
+            deleted_speler = spelers.pop(idx)
+            return deleted_speler
+    return {"error": "Speler not found"}
