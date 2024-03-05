@@ -25,7 +25,14 @@ class competitieBase(BaseModel):
     naam_competitie: str
     land_competitie: str
 
+class CreateSpeler(SpelerBase):
+    model_config = ConfigDict(from_attributes=True)
 
 @app.get('/spelers/')
 async def get_spelers() -> list[SpelerBase]:
+    return spelers
+
+@app.post('/spelers')
+async def create_speler(speler:CreateSpeler) -> list[SpelerBase]:
+    spelers.append(speler)
     return spelers
