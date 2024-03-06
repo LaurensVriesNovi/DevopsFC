@@ -14,6 +14,9 @@ spelers = [
      'transferwaarde': 21, 'naam_team': 'Az'},
 ]
 
+
+
+
 class SpelerBase(BaseModel):
     id_speler: int
     naam_speler: str
@@ -22,6 +25,10 @@ class SpelerBase(BaseModel):
     statistieken: int
     transferwaarde: int
     naam_team: str
+
+class output(BaseModel):
+    uitleg: str
+    output_tekst: SpelerBase
 
 class CreateSpeler(SpelerBase):
     model_config = ConfigDict(from_attributes=True)
@@ -32,8 +39,10 @@ async def get_spelers() -> list[SpelerBase]:
 
 
 @router.get('/spelers/{id_speler}')
-async def get_spelers_id(id_speler: int) -> SpelerBase:
-    return spelers[id_speler - 1]
+async def get_spelers_id(id_speler: int) -> output:
+    tekst= "dit is de uitleg voor deze pagina"
+    gevraagd = spelers[id_speler - 1]
+    return output(uitleg = tekst , output_tekst= gevraagd)
 
 
 #Maakt een nieuwe speler aan
