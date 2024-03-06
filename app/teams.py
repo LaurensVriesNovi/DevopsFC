@@ -35,4 +35,4 @@ async def delete_team(team_id: int) -> TeamBase:
         if teams[i]['id_team'] == team_id:
             deleted_team = teams.pop(i)
             return deleted_team
-    return {"error": "Speler not found"}
+    return {"error": "Team not found"}
