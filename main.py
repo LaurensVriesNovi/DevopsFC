@@ -17,9 +17,9 @@ spelers = [
 
 
 teams = [
-    {'team_id': '1', 'naam_team': 'Ajax', 'competitie': 'Eredivisie', 'totale_transferwaarde': 200},
-    {'team_id': '2', 'naam_team': 'Liverpool', 'competitie': 'Premier League', 'totale_transferwaarde': 400},
-    {'team_id': '3', 'naam_team': 'Az', 'competitie': 'Eredivisie', 'totale_transferwaarde': 800}
+    {'id_team': 1, 'naam_team': 'Ajax', 'competitie': 'Eredivisie', 'totale_transferwaarde': 200},
+    {'id_team': 2, 'naam_team': 'Liverpool', 'competitie': 'Premier League', 'totale_transferwaarde': 400},
+    {'id_team': 3, 'naam_team': 'Az', 'competitie': 'Eredivisie', 'totale_transferwaarde': 800}
 ]
 
 competities = [
@@ -39,6 +39,7 @@ class SpelerBase(BaseModel):
 
 #Het basemodel van de competities, waar vast staat welke waarden een speler heeft.
 class TeamBase(BaseModel):
+    id_team: int
     naam_team: str
     competitie: str
     totale_transferwaarde: int
@@ -86,12 +87,11 @@ async def create_speler(team:CreateTeam) -> list[TeamBase]:
     return teams
 
 #Verwijdert een speler op basis van ID
-@app.delete('/teams/{team_id}')
-async def delete_speler(team_id: int) -> TeamBase:
+@app.delete('/teams/{id_team}')
+async def delete_team(team_id: int) -> TeamBase:
     global teams
-    for team_id in range(len(teams)):
-        team = teams[team_id]
-        if team['id_team'] == team_id:
-            deleted_team = team.pop(team_id)
+    for i in range(len(teams)):
+        if teams[i]['id_team'] == team_id:
+            deleted_team = teams.pop(i)
             return deleted_team
     return {"error": "Speler not found"}
