@@ -30,6 +30,12 @@ class CreateSpeler(SpelerBase):
 async def get_spelers() -> list[SpelerBase]:
     return spelers
 
+
+@router.get('/spelers/{id_speler}')
+async def get_spelers_id(id_speler: int) -> SpelerBase:
+    return spelers[id_speler - 1]
+
+
 #Maakt een nieuwe speler aan
 @router.post('/spelers')
 async def create_speler(speler:CreateSpeler) -> list[SpelerBase]:
