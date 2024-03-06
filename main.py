@@ -14,10 +14,12 @@ spelers = [
     {'id_speler': 3, 'naam_speler': 'Sam', 'leeftijd': 20, 'afkomst': 'Nederland', 'statistieken': 99,
      'transferwaarde': 21, 'naam_team': 'Az'},
 ]
-totale_transferwaarde_berekend = 100
+
 
 teams = [
-    {'naam_team': 'Ajax', 'competitie': 'Eredivisie', 'totale_transferwaarde': totale_transferwaarde_berekend}
+    {'naam_team': 'Ajax', 'competitie': 'Eredivisie', 'totale_transferwaarde': 200},
+    {'naam_team': 'Liverpool', 'competitie': 'Premier League', 'totale_transferwaarde': 400},
+    {'naam_team': 'Az', 'competitie': 'Eredivisie', 'totale_transferwaarde': 800}
 ]
 #Het basemodel van de spelers, waar vast staat welke waarden een speler heeft.
 class SpelerBase(BaseModel):
