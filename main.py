@@ -21,6 +21,12 @@ teams = [
     {'naam_team': 'Liverpool', 'competitie': 'Premier League', 'totale_transferwaarde': 400},
     {'naam_team': 'Az', 'competitie': 'Eredivisie', 'totale_transferwaarde': 800}
 ]
+
+competities = [
+    {'naam_competitie': 'Eredivisie', 'land_competitie': 'Nederland'},
+    {'naam_competitie': 'Premier league', 'land_competitie': 'Engeland'}
+]
+
 #Het basemodel van de spelers, waar vast staat welke waarden een speler heeft.
 class SpelerBase(BaseModel):
     id_speler: int
