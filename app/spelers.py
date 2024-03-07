@@ -44,6 +44,17 @@ async def get_spelers_id(id_speler: int) -> output:
     gevraagd = spelers[id_speler - 1]
     return output(uitleg = tekst , output_tekst= gevraagd)
 
+@router.put("/spelers/{id_speler}")
+async def update_speler(id_speler: int, speler: SpelerBase):
+    for i, speler_data in enumerate(spelers):
+        if speler_data["id_speler"] == id_speler:
+            if speler.naam_speler:
+                speler_data["naam_speler"] = speler.naam_speler
+            if speler.leeftijd:
+                speler_data["leeftijd"] = speler.leeftijd
+            return spelers[i]
+
+
 
 #Maakt een nieuwe speler aan
 @router.post('/spelers')
