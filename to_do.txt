@@ -3,10 +3,20 @@ to do list (by product owner Laurens):
 1. put invoegen voer team, competitie, spelers
 2. aanmaken enviroments voor (ci/cd pipeline) + onderzoek
 3. database onderzoeken met docker (laurens)
-4. Plan van aanpak (Lean)
 5. algoritme maken voor transferwaardes
 6. Virtuele machine (krijgen nog les hierover)
 7. ci/cd script (vooronderzoek/ les)
 8. testen aanmaken (grote vriend vragen)
 9. logboeken onderzoeken en aanmaken
+10. uitleggen toevoegen aan pagina's
+11. httpsexceptions toevoegen/controleren op binnenkomende gegevens
+12 formule maken (omgekeerd exponentieel leefttijd en rating) voor waardebepaling.
 
+
+Verslag en presentatie:
+1. Plan van aanpak (Lean)
+2. presentatie
+3. planning
+4. voorwoord
+5. taakverdeling
+6. document maken.
