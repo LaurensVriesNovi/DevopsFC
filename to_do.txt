@@ -8,13 +8,13 @@ to do list (by product owner Laurens):
 7. ci/cd script (vooronderzoek/ les)
 8. testen aanmaken (grote vriend vragen)
 9. logboeken onderzoeken en aanmaken
-10. uitleggen toevoegen aan webpagina's
+(gaan we niet doen, 12-3) 10. uitleggen toevoegen aan webpagina's
 11. httpsexceptions toevoegen/controleren op binnenkomende gegevens
 (KLAAR, 12-03)12. formule maken (omgekeerd exponentieel leefttijd en rating) voor waardebepaling.
-13. hateoas (voor uitleg !!!)
+(gaan we niet doen, 12-03) 13. hateoas (voor uitleg !!!)
 14. Leeftijd moet tussen 16 en 40.
-15. database connecten met applicatie
-16. querrys ophalen voor aplicatie
+(Weten hoe het werkt, zie proefproject, 12-3) 15. database connecten met applicatie
+(Weten hoe het werkt, zie proefproject, 12-3) 16. querrys ophalen voor aplicatie
 
 Verslag en presentatie:
 1. Plan van aanpak (Lean)
