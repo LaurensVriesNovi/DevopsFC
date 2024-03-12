@@ -2,17 +2,19 @@ to do list (by product owner Laurens):
 
 (KLAAR, 12-03) 1. put invoegen voor team, competitie, spelers
 2. aanmaken enviroments voor (ci/cd pipeline) + onderzoek
-3. database onderzoeken met docker (laurens)
-5. algoritme maken voor club en competitie waardes (eerst 12)
+(KLAAR, 12-03)3. database onderzoeken en aanmaken
+(KLAAR, 12-03)5. algoritme maken voor club en competitie waardes (eerst 12)
 6. Virtuele machine (krijgen nog les hierover)
 7. ci/cd script (vooronderzoek/ les)
 8. testen aanmaken (grote vriend vragen)
 9. logboeken onderzoeken en aanmaken
 10. uitleggen toevoegen aan webpagina's
 11. httpsexceptions toevoegen/controleren op binnenkomende gegevens
-12. formule maken (omgekeerd exponentieel leefttijd en rating) voor waardebepaling.
+(KLAAR, 12-03)12. formule maken (omgekeerd exponentieel leefttijd en rating) voor waardebepaling.
 13. hateoas (voor uitleg !!!)
 14. Leeftijd moet tussen 16 en 40.
+15. database connecten met applicatie
+16. querrys ophalen voor aplicatie
 
 Verslag en presentatie:
 1. Plan van aanpak (Lean)
