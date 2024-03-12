@@ -50,10 +50,6 @@ async def get_spelers_id(id_speler: int) -> output:
 async def update_speler(id_speler: int, speler: SpelerBase):
     for i, speler_data in enumerate(spelers):
         if speler_data["id_speler"] == id_speler:
-            if speler.naam_speler:
-                speler_data["naam_speler"] = speler.naam_speler
-            if speler.leeftijd:
-                speler_data["leeftijd"] = speler.leeftijd
             return spelers[i]
 
 
