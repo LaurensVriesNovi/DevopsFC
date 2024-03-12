@@ -12,6 +12,7 @@ to do list (by product owner Laurens):
 11. httpsexceptions toevoegen/controleren op binnenkomende gegevens
 12. formule maken (omgekeerd exponentieel leefttijd en rating) voor waardebepaling.
 13. hateoas (voor uitleg !!!)
+14. Leeftijd moet tussen 16 en 40.
 
 Verslag en presentatie:
 1. Plan van aanpak (Lean)
