@@ -16,9 +16,6 @@ spelers = [
      'transferwaarde': 21, 'naam_team': 'Az'},
 ]
 
-
-
-
 class SpelerBase(BaseModel):
     id_speler: int
     naam_speler: str
@@ -26,6 +23,11 @@ class SpelerBase(BaseModel):
     afkomst: str
     statistieken: int
     transferwaarde: int
+    naam_team: str
+
+class SpelerAanpassen(BaseModel):
+    leeftijd: int
+    statistieken: int
     naam_team: str
 
 class output(BaseModel):
@@ -47,11 +49,16 @@ async def get_spelers_id(id_speler: int) -> output:
     return output(uitleg = tekst , output_tekst= gevraagd)
 
 @router.put("/spelers/{id_speler}")
-async def update_speler(id_speler: int, speler: SpelerBase):
+async def update_speler(id_speler: int, speler: SpelerAanpassen):
     for i, speler_data in enumerate(spelers):
         if speler_data["id_speler"] == id_speler:
+            if speler.leeftijd:
+                speler_data["leeftijd"] = speler.leeftijd
+            if speler.statistieken:
+                speler_data["statistieken"] = speler.statistieken
+            if speler.naam_team:
+                speler_data["naam_team"] = speler.naam_team
             return spelers[i]
-
 
 
 #Maakt een nieuwe speler aan
