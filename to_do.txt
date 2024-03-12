@@ -11,7 +11,7 @@ to do list (by product owner Laurens):
 10. uitleggen toevoegen aan webpagina's
 11. httpsexceptions toevoegen/controleren op binnenkomende gegevens
 12. formule maken (omgekeerd exponentieel leefttijd en rating) voor waardebepaling.
-
+13. hateoas (voor uitleg !!!)
 
 Verslag en presentatie:
 1. Plan van aanpak (Lean)
