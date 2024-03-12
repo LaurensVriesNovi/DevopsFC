@@ -1,6 +1,6 @@
 to do list (by product owner Laurens):
 
-1. put invoegen voor team, competitie, spelers
+(KLAAR, 12-03) 1. put invoegen voor team, competitie, spelers
 2. aanmaken enviroments voor (ci/cd pipeline) + onderzoek
 3. database onderzoeken met docker (laurens)
 5. algoritme maken voor club en competitie waardes (eerst 12)
