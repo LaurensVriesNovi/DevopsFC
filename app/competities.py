@@ -34,3 +34,5 @@ async def delete_competitie(competitie_id: int) -> competitieBase:
             deleted_competitie = competities.pop(i)
             return deleted_competitie
     return {"error": "Speler not found"}
+
+
