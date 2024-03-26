@@ -1,8 +1,6 @@
 from fastapi import APIRouter
 from pydantic import BaseModel,ConfigDict
 
-# lets crash this guy
-
 router = APIRouter()
 
 spelers = [
