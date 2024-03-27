@@ -29,4 +29,10 @@ jobs:
      
     - name: Push image to DigitalOcean Container Registry
       run: docker push ${{ secrets.REGISTRY_NAME }}/devops_main:$(echo $GITHUB_SHA | head -c7)
+    - name: Start Docker container on DigitalOcean Droplet
+      run: |
+          ssh root@${{ secrets.DROPLET_IP }} << 'EOF'
+          docker pull ${{ secrets.REGISTRY_NAME }}/devops_main:$(echo $GITHUB_SHA | head -c7)
+          docker run -d -p 80:80 --name devops_container ${{ secrets.REGISTRY_NAME }}/devops_main:$(echo $GITHUB_SHA | head -c7)
+          EOF
 
