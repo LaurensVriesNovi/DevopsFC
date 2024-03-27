@@ -1,6 +1,5 @@
 from main import app, db_connection
 from fastapi.testclient import TestClient
-from unittest.mock import patch, MagicMock
 client = TestClient(app)
 db_connection.autocommit = False
 
