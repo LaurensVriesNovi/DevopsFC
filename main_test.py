@@ -1,6 +1,5 @@
 from main import app, db_connection
 from fastapi.testclient import TestClient
-from unittest.mock import patch, MagicMock
 client = TestClient(app)
 db_connection.autocommit = False
 
@@ -20,7 +19,7 @@ def test_read_competities():
     assert response.json() != []
 
 def test_create_competities():
-    response = client.post("/competities?competitienaam=Serie+B&competitieland=Italië")
+    response = client.post("/competities?competitie_naam=Serie+B&competitie_qland=Italië")
     assert response.status_code == 200
 
 def test_create_spelers():
