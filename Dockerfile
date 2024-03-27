@@ -7,6 +7,7 @@ WORKDIR /app
 # Kopieer het huidige directory inhoud naar de container op /app
 COPY . /app
 
+COPY requirements.txt .
 # Installeer de benodigde Python-pakketten
 RUN pip install -r requirements.txt
 
