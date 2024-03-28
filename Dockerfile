@@ -7,8 +7,9 @@ WORKDIR /app
 # Kopieer het huidige directory inhoud naar de container op /app
 COPY . /app
 
+COPY requirements.txt .
 # Installeer de benodigde Python-pakketten
 RUN pip install -r requirements.txt
 
 # Start de FastAPI-applicatie
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
+ENTRYPOINT ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
