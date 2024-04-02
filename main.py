@@ -1,5 +1,5 @@
-from database import db_connection
 from fastapi import FastAPI
+from database import db_connection
 from app.competities import competities_router
 from app.teams import teams_router
 from app.spelers import spelers_router

@@ -1,13 +1,9 @@
 from fastapi import APIRouter
-
-from app.data import fetch_tuples
-from app.spelers import waarde_berekenen, get_speler_tuples
-from app.teams import get_team_tuples
-from main import db_connection
+from DevopsFC.database import fetch_tuples, db_connection
+from spelers import waarde_berekenen, get_speler_tuples
+from teams import get_team_tuples
 
 competities_router = APIRouter()
-
-
 
 def get_competitie_tuples():
     return fetch_tuples("SELECT * FROM competities")

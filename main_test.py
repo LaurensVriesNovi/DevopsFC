@@ -1,7 +1,8 @@
 from main import app, db_connection
 from fastapi.testclient import TestClient
 client = TestClient(app)
-db_connection.autocommit = False
+
+
 
 def test_read_spelers():
     response = client.get("/spelers")
