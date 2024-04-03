@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from DevopsFC.database import fetch_tuples, db_connection
+from database import fetch_tuples, db_connection
 
 teams_router = APIRouter()
 
