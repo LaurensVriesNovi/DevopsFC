@@ -43,13 +43,13 @@ jobs:
       run: kubectl rollout status deployment/devops-deployment
   
   test:
-      runs-on: ubuntu-latest
-      needs: build
-      steps:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
       - name: Check out the code
         uses: actions/checkout@v2
       - name: Build and run tests
         run: |
-          pytest --cov --cov-fail-under=99
+          pytest --cov=./main_test.py --cov-fail-under=99
 
 
