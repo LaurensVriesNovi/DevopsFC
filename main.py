@@ -3,6 +3,7 @@ from app.competities import competities_router
 from app.teams import teams_router
 from app.spelers import spelers_router
 
+
 app = FastAPI()
 app.include_router(spelers_router)
 app.include_router(teams_router)

@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops-deployment
+  labels:
+    app: devops
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: devops
+  template:
+    metadata:
+      labels:
+        app: devops
+    spec:
+      containers:
+      - name: devops
+        image: <IMAGE>
+        ports:
+        - containerPort: 80
+        imagePullPolicy: Always
+        env:
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: DATABASE_URL
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: devops-service
+spec:
+  selector:
+    app: devops
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer
