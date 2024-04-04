@@ -55,8 +55,8 @@ jobs:
           docker run --rm \
             -e TEST_DATABASE_URL=${{ secrets.TEST_DATABASE_URL }} \
             -e ENVIRONMENT=testing \
-            ${{ secrets.REGISTRY_NAME }}/devops_main:$(echo $GITHUB_SHA | head -c7) pytest --cov=./main_test.py --cov-fail-under=99
-
+            ${{ secrets.REGISTRY_NAME }}/devops_main:$(echo $GITHUB_SHA | head -c7) bash -c "pytest --cov=./main_test.py --cov-fail-under=99"
+  
   deploy:
     runs-on: ubuntu-latest
     needs: build_and_test
