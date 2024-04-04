@@ -12,12 +12,6 @@ services:
 
   db:
     image: postgres:latest
-    environment:
-      POSTGRES_DBNAME: ${{ secrets.DATABASE_NAME }}
-      POSTGRES_USER: ${{ secrets.DATABASE_USERNAME }}
-      POSTGRES_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
-      POSTGRES_HOST: ${{ secrets.DATABASE_HOST }}
-      POSTGRES_PORT: ${{ secrets.DATABASE_PORT }}
     ports:
       - "25060:5432"
 
