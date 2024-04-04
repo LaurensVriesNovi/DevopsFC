@@ -1,10 +1,7 @@
 import os
 import psycopg2
 
-DATABASE_URL = os.environ.get('DATABASE_URL')
-if os.getenv('ENVIRONMENT') == 'test':
-    DATABASE_URL = os.environ.get('TEST_DATABASE_URL')
-
+DATABASE_URL = os.environ.get('TEST_DATABASE_URL')
 db_connection = psycopg2.connect(DATABASE_URL)
 
 def fetch_tuples(query):
