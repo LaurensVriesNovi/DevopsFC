@@ -11,5 +11,6 @@ COPY requirements.txt .
 # Installeer de benodigde Python-pakketten
 RUN pip install -r requirements.txt
 
+RUN ["pytest --cov"]
 # Start de FastAPI-applicaties
 ENTRYPOINT ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
