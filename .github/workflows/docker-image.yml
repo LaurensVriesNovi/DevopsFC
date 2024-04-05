@@ -14,8 +14,14 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    env:
-      TEST_DATABASE_URL: ${{ secrets.TEST_DATABASE_URL }}
+
+    services:
+      postgres:
+        image: postgres:latest
+        ports:
+          - 25060:5432
+        env:
+          TEST_DATABASE_URL: ${{ secrets.TEST_DATABASE_URL }}
 
     steps:
       - name: Checkout code
