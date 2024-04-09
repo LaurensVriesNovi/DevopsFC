@@ -1,4 +1,3 @@
-[2:03 PM] Lean Prins
 apiVersion: apps/v1
 kind: Deployment
 metadata:
