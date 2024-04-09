@@ -1,7 +1,7 @@
 from fastapi import APIRouter
-from app.spelers import get_speler_tuples, waarde_berekenen
+from spelers import get_speler_tuples, waarde_berekenen
 from database import fetch_tuples, db_connection
-from app.teams import get_team_tuples
+from teams import get_team_tuples
 
 competities_router = APIRouter()
 

@@ -1,6 +1,7 @@
 import os
 import psycopg2
 
+
 if os.environ.get('PROD_ENVIRONMENT') == "PRODUCTION":
     db_connection = psycopg2.connect(os.environ.get('DATABASE_URL'))
     

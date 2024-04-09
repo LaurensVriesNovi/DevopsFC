@@ -1,7 +1,7 @@
 from fastapi import FastAPI
-from app.competities import competities_router
-from app.teams import teams_router
-from app.spelers import spelers_router
+from competities import competities_router
+from teams import teams_router
+from spelers import spelers_router
 
 
 app = FastAPI()
