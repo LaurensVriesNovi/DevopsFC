@@ -17,7 +17,8 @@ jobs:
       DATABASE_PORT: ${{ secrets.DATABASE_PORT }}
       DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
       TEST_DATABASE_NAME: ${{ secrets.TEST_DATABASE_NAME }}
-      ENVIRONMENT: TESTING
+      TEST_ENVIRONMENT: TESTING
+      PROD_ENVIRONMENT: PRODUCTION
 
     steps:
     - name: Checkout code
