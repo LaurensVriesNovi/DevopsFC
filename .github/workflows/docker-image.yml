@@ -43,6 +43,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: test
 
+    env:
+      TEST_ENVIRONMENT: PRODUCTION
+      PROD_ENVIRONMENT: PRODUCTION
+
     steps:
     - uses: actions/checkout@v3
     - name: Install doctl
