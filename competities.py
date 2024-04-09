@@ -30,21 +30,25 @@ def get_competitieswaardes():
         for team in teams:
             for speler in spelers:
                 if speler[5] == team[0] and team[2] == competitie_id:
-                    totale_transferwaarde = waarde_berekenen(speler)
-                    competitie_waarde += totale_transferwaarde
+                    transferwaarde = waarde_berekenen(speler)
+                    competitie_waarde += transferwaarde
                     competitie_spelers += 1
+
+        # Opgemaakte transferwaarde na de loops
+        opgemaakte_transferwaarde = '{0:,.0f}'.format(competitie_waarde).replace(',', '.')
 
         # Voeg de informatie van de competitie toe aan de lijst
         competitie_info.append({
             'id': competitie_id,
             "naam": competitie_naam,
             "land": competitie_land,
-            "waarde": competitie_waarde,
+            "waarde": opgemaakte_transferwaarde,  # Opgemaakte transferwaarde
             "aantal spelers": competitie_spelers
         })
 
     # Return de lijst met de informatie van alle competities
     return competitie_info
+
 
 @competities_router.post('/competities')
 async def create_competities(competitie_naam: str, competitie_land: str):
