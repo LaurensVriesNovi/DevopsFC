@@ -6,7 +6,9 @@ services:
     ports:
       - "80:80"
     environment:
-      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      DATABASE_URL: ${{ secrets.DATABASE_URL }} 
+      PROD_ENVIRONMENT: PRODUCTION
+      TEST_ENVIRONMENT: PRODUCTION
     depends_on:
       - db
 
@@ -14,4 +16,3 @@ services:
     image: postgres:latest
     ports:
       - "25060:5432"
-

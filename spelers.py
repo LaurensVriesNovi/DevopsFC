@@ -1,6 +1,5 @@
 from fastapi import APIRouter
-from main import db_connection
-from app.data import fetch_tuples
+from database import fetch_tuples, db_connection
 
 spelers_router = APIRouter()
 

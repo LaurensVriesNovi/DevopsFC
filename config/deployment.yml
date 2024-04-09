@@ -26,6 +26,10 @@ spec:
             secretKeyRef:
               name: db-secret
               key: DATABASE_URL
+        - name: PROD_ENVIRONMENT
+          value: PRODUCTION
+        - name: TESt_ENVIRONMENT
+          value: PRODUCTION
 ---
 apiVersion: v1
 kind: Service
