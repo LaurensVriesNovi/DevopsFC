@@ -46,6 +46,7 @@ jobs:
     env:
       TEST_ENVIRONMENT: PRODUCTION
       PROD_ENVIRONMENT: PRODUCTION
+      DATABASE_NAME: ${{ secrets.DATABASE_URL }}
 
     steps:
     - uses: actions/checkout@v3
