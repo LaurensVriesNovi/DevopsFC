@@ -35,7 +35,7 @@ jobs:
 
     - name: Run tests with coverage
       run: |
-        pytest --cov --cov-fail-under=100
+        pytest --cov --cov-fail-under=100  --cov-report term-missing
 
   build:
 
