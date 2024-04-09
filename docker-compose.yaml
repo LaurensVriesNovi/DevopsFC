@@ -7,7 +7,8 @@ services:
       - "80:80"
     environment:
       DATABASE_URL: ${{ secrets.DATABASE_URL }} 
-      ENVIRONMENT: PRODUCTION
+      PROD_ENVIRONMENT: PRODUCTION
+      TEST_ENVIRONMENT: PRODUCTION
     depends_on:
       - db
 
