@@ -12,3 +12,4 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 # Start de FastAPI-applicaties
 ENTRYPOINT ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
+# Wie dit leest is gek :) (moest even voor nieuwe image)
