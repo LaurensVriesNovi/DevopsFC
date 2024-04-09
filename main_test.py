@@ -82,3 +82,7 @@ def test_14_put_speler():
 def test_15_put_speler():
     response = client.put("/spelers/1?spelerleeftijd=60&spelerstatistiek=60&teamid=1")
     assert response.status_code == 400
+    
+def test_16_create_teams():
+    response = client.post("/teams?teamnaam=bayern+munchen&competitie_id=5")
+    assert response.status_code == 404
