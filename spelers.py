@@ -43,25 +43,50 @@ async def get_spelers():
 
 @spelers_router.post('/spelers')
 async def create_speler(spelernaam: str, spelerland: str, spelerleeftijd: int, spelerstatistiek: int, teamid: int):
+    if spelerleeftijd < 16:
+        raise HTTPException(status_code=400, detail="Speler is te jong (jonger dan 16 jaar)")
+    elif spelerleeftijd > 45:
+        raise HTTPException(status_code=400, detail="Speler is te oud (ouder dan 45 jaar)")
+
     cursor = db_connection.cursor()
     cursor.execute("INSERT INTO spelers(naam, land, leeftijd, statistiek, team_id) VALUES (%s, %s, %s, %s, %s)",
                    (spelernaam, spelerland, spelerleeftijd, spelerstatistiek, teamid))
     cursor.close()
-    return "speler toegevoegd"
+    return "Speler toegevoegd"
 
 @spelers_router.put("/spelers/{speler_id}")
 async def update_speler(speler_id: int, spelerleeftijd: int, spelerstatistiek: int, teamid: int):
+    if spelerleeftijd < 16:
+        raise HTTPException(status_code=400, detail="Speler is te jong (jonger dan 16 jaar)")
+    elif spelerleeftijd > 45:
+        raise HTTPException(status_code=400, detail="Speler is te oud (ouder dan 45 jaar)")
+
     cursor = db_connection.cursor()
+    cursor.execute("SELECT * FROM spelers WHERE speler_id = %s", (speler_id,))
+    speler = cursor.fetchone()  # Haal de speler op
+
+    if speler is None:  # Controleer of de speler niet bestaat
+        cursor.close()
+        raise HTTPException(status_code=404, detail="Speler niet gevonden")
+
     cursor.execute("UPDATE spelers SET leeftijd = %s, statistiek = %s, team_id = %s WHERE speler_id = %s",
                    (spelerleeftijd, spelerstatistiek, teamid, speler_id))
     cursor.close()
-    return "speler gewijzigd"
-    raise HTTPException(status_code=404, detail="speler niet gevonden")
+    return "Speler gewijzigd"
+
+
 
 @spelers_router.delete('/spelers/{speler_id}')
 async def delete_speler(speler_id: int):
     cursor = db_connection.cursor()
+    cursor.execute("SELECT * FROM spelers WHERE speler_id = %s", (speler_id,))
+    speler = cursor.fetchone()  # Haal de speler op
+
+    if speler is None:  # Controleer of de speler niet bestaat
+        cursor.close()
+        raise HTTPException(status_code=404, detail="Speler niet gevonden")
+
     cursor.execute("DELETE FROM spelers WHERE speler_id = %s", (speler_id,))
     cursor.close()
-    return "speler verwijderd"
-    raise HTTPException(status_code=404, detail="speler niet gevonden")
+    return "Speler verwijderd"
+
