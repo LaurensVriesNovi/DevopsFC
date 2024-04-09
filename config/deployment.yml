@@ -1,3 +1,4 @@
+[2:03 PM] Lean Prins
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -30,6 +31,11 @@ spec:
           value: PRODUCTION
         - name: TESt_ENVIRONMENT
           value: PRODUCTION
+        - name: LOGGING_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: logging-secret
+              key: LOGGING_TOKEN
 ---
 apiVersion: v1
 kind: Service
