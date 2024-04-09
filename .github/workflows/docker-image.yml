@@ -31,7 +31,7 @@ jobs:
 
     - name: Run tests with coverage
       run: |
-        pytest --cov=./main_test.py --cov-fail-under=100
+        pytest --cov=main_test.py --cov-fail-under=100
 
   build:
 
