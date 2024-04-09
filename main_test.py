@@ -1,6 +1,7 @@
 from fastapi.testclient import TestClient
 from main import app
 from database import db_connection
+from spelers import waarde_berekenen
 
 client = TestClient(app)
 
@@ -105,3 +106,16 @@ def test_20_create_spelers():
     response = client.post(
         "/spelers?spelernaam=Hans&spelerland=Spanje&spelerleeftijd=60&spelerstatistiek=60&teamid=7")
     assert response.status_code == 404
+
+def test_waarde_berekenen_jonge_speler():
+    speler = ("John Doe", "Nederland", 18, 80, 1)  # Voorbeeld van een jonge speler
+    assert waarde_berekenen(speler) == 2640000  # Verwachte totale transferwaarde voor een jonge speler
+
+def test_waarde_berekenen_oude_speler():
+    speler = ("John Doe", "Nederland", 30, 80, 1)  # Voorbeeld van een oudere speler
+    assert waarde_berekenen(speler) == 27200000  # Verwachte totale transferwaarde voor een oudere speler
+
+def test_waarde_berekenen_gemiddelde_speler():
+    speler = ("John Doe", "Nederland", 22, 80, 1)  # Voorbeeld van een gemiddelde speler
+    assert waarde_berekenen(speler) == 40000000  # Verwachte totale transferwaarde voor een gemiddelde speler
+
