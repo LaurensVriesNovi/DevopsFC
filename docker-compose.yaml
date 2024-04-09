@@ -7,8 +7,8 @@ services:
       - "80:80"
     environment:
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
-      TEST_DATABASE_URL: ${{ secrets.TEST_DATABASE_URL }} # Haal de testdatabase-URL op uit GitHub-secret
-      ENVIRONMENT: testing # Omgevingsvariabele voor testfase
+      TEST_DATABASE_URL: ${{ secrets.TEST_DATABASE_URL }} 
+      ENVIRONMENT: testing
     depends_on:
       - db
 
