@@ -1,11 +1,10 @@
 import os
 import psycopg2
 
-DATABASE_URL = os.environ.get('DATABASE_URL')
+db_connection = psycopg2.connect(dbname=os.environ.get('DATABASE_NAME'), user=os.environ.get('DATABASE_USERNAME'), password=os.environ.get('DATABASE_PASSWORD'), host=os.environ.get('DATABASE_HOST'), port=os.environ.get('DATABASE_PORT'))
 if os.environ.get('ENVIROMENT') == "TESTING":
-    DATABASE_URL = os.environ.get('TEST_DATABASE_URL')
+    db_connection = psycopg2.connect(dbname=os.environ.get('TEST_DATABASE_NAME'), user=os.environ.get('DATABASE_USERNAME'), password=os.environ.get('DATABASE_PASSWORD'), host=os.environ.get('DATABASE_HOST'), port=os.environ.get('DATABASE_PORT'))
 
-db_connection = psycopg2.connect(DATABASE_URL)
 
 def fetch_tuples(query):
     cursor = db_connection.cursor()
