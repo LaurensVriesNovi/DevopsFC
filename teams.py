@@ -1,5 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from database import fetch_tuples, db_connection
+from controles import competitie_id_controle
 
 teams_router = APIRouter()
 
@@ -21,13 +22,11 @@ async def get_teams():
 @teams_router.post('/teams')
 async def create_team(teamnaam: str, competitie_id: int):
     cursor = db_connection.cursor()
-
-    # Controleer of de competitie bestaat
-    cursor.execute("SELECT * FROM competities WHERE competitie_id = %s", (competitie_id,))
-    competitie = cursor.fetchone()
-    if competitie is None:
-        cursor.close()
-        raise HTTPException(status_code=404, detail="Competitie niet gevonden")
+    #controle
+    try:
+        competitie_id_controle(competitie_id)
+    except HTTPException as e:
+        return e.detail, e.status_code
 
     # Voeg het team toe als de competitie bestaat
     cursor.execute("INSERT INTO teams(naam, competitie_id) VALUES (%s, %s)", (teamnaam, competitie_id))

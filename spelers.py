@@ -1,5 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from database import fetch_tuples, db_connection
+from controles import leeftijf_controle, statestiek_controle, speler_id_controle, team_id_controle
 
 spelers_router = APIRouter()
 
@@ -47,22 +48,15 @@ async def get_spelers():
 
 @spelers_router.post('/spelers')
 async def create_speler(spelernaam: str, spelerland: str, spelerleeftijd: int, spelerstatistiek: int, teamid: int):
-    # Controleer de leeftijd van de speler
-    if spelerleeftijd < 16:
-        raise HTTPException(status_code=400, detail="Speler is te jong (jonger dan 16 jaar)")
-    elif spelerleeftijd > 45:
-        raise HTTPException(status_code=400, detail="Speler is te oud (ouder dan 45 jaar)")
+    # Controles
+    try:
+        leeftijf_controle(spelerleeftijd)
+        statestiek_controle(spelerstatistiek)
+        team_id_controle(teamid)
+    except HTTPException as e:
+        return e.detail, e.status_code
 
     cursor = db_connection.cursor()
-
-    # Controleer of het team bestaat
-    cursor.execute("SELECT * FROM teams WHERE team_id = %s", (teamid,))
-    team = cursor.fetchone()
-    if team is None:
-        cursor.close()
-        raise HTTPException(status_code=404, detail="Team niet gevonden")
-
-    # Voeg de speler toe als het team bestaat
     cursor.execute("INSERT INTO spelers(naam, land, leeftijd, statistiek, team_id) VALUES (%s, %s, %s, %s, %s)",
                    (spelernaam, spelerland, spelerleeftijd, spelerstatistiek, teamid))
     cursor.close()
@@ -71,25 +65,16 @@ async def create_speler(spelernaam: str, spelerland: str, spelerleeftijd: int, s
 
 @spelers_router.put("/spelers/{speler_id}")
 async def update_speler(speler_id: int, spelerleeftijd: int, spelerstatistiek: int, teamid: int):
-    if spelerleeftijd < 16:
-        raise HTTPException(status_code=400, detail="Speler is te jong (jonger dan 16 jaar)")
-    elif spelerleeftijd > 45:
-        raise HTTPException(status_code=400, detail="Speler is te oud (ouder dan 45 jaar)")
+    #controles
+    try:
+        leeftijf_controle(spelerleeftijd)
+        statestiek_controle(spelerstatistiek)
+        speler_id_controle(speler_id)
+        team_id_controle(teamid)
+    except HTTPException as e:
+        return e.detail, e.status_code
 
     cursor = db_connection.cursor()
-
-    cursor.execute("SELECT * FROM teams WHERE team_id = %s", (teamid,))
-    team = cursor.fetchone()
-    if team is None:
-        cursor.close()
-        raise HTTPException(status_code=404, detail="Team niet gevonden")
-
-    cursor.execute("SELECT * FROM spelers WHERE speler_id = %s", (speler_id,))
-    speler = cursor.fetchone()  # Haal de speler op
-    if speler is None:  # Controleer of de speler niet bestaat
-        cursor.close()
-        raise HTTPException(status_code=404, detail="Speler niet gevonden")
-
     cursor.execute("UPDATE spelers SET leeftijd = %s, statistiek = %s, team_id = %s WHERE speler_id = %s",
                    (spelerleeftijd, spelerstatistiek, teamid, speler_id))
     cursor.close()
@@ -98,14 +83,13 @@ async def update_speler(speler_id: int, spelerleeftijd: int, spelerstatistiek: i
 
 @spelers_router.delete('/spelers/{speler_id}')
 async def delete_speler(speler_id: int):
+    #controle
+    try:
+        speler_id_controle(speler_id)
+    except HTTPException as e:
+        return e.detail, e.status_code
+
     cursor = db_connection.cursor()
-
-    cursor.execute("SELECT * FROM spelers WHERE speler_id = %s", (speler_id,))
-    speler = cursor.fetchone()  # Haal de speler op
-    if speler is None:  # Controleer of de speler niet bestaat
-        cursor.close()
-        raise HTTPException(status_code=404, detail="Speler niet gevonden")
-
     cursor.execute("DELETE FROM spelers WHERE speler_id = %s", (speler_id,))
     cursor.close()
     return "Speler verwijderd"
