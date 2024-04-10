@@ -1,10 +1,13 @@
 from fastapi import APIRouter
 from database import fetch_tuples, db_connection
+from controles import leeftijf_controle, statestiek_controle, speler_id_controle, team_id_controle
 
 spelers_router = APIRouter()
 
+
 def get_speler_tuples():
     return fetch_tuples("SELECT * FROM spelers")
+
 
 def waarde_berekenen(speler):
     leeftijd_speler = speler[3]
@@ -14,8 +17,9 @@ def waarde_berekenen(speler):
         waarde_leeftijd = 100 - (leeftijd_speler - 22) * 4
     else:
         waarde_leeftijd = 100
-    totale_transferwaarde = int(waarde_leeftijd * (1 / 2 * speler[4]) * 10000)
+    totale_transferwaarde = int((waarde_leeftijd * (1 / 2 * speler[4])) * 10000)
     return totale_transferwaarde
+
 
 @spelers_router.get('/spelers')
 async def get_spelers():
@@ -41,27 +45,41 @@ async def get_spelers():
 
     return speler_info
 
+
 @spelers_router.post('/spelers')
 async def create_speler(spelernaam: str, spelerland: str, spelerleeftijd: int, spelerstatistiek: int, teamid: int):
+    # Controles
+    leeftijf_controle(spelerleeftijd)
+    statestiek_controle(spelerstatistiek)
+    team_id_controle(teamid)
     cursor = db_connection.cursor()
     cursor.execute("INSERT INTO spelers(naam, land, leeftijd, statistiek, team_id) VALUES (%s, %s, %s, %s, %s)",
                    (spelernaam, spelerland, spelerleeftijd, spelerstatistiek, teamid))
     cursor.close()
-    return "speler toegevoegd"
+    return "Speler toegevoegd"
+
 
 @spelers_router.put("/spelers/{speler_id}")
 async def update_speler(speler_id: int, spelerleeftijd: int, spelerstatistiek: int, teamid: int):
+    #controles
+    leeftijf_controle(spelerleeftijd)
+    statestiek_controle(spelerstatistiek)
+    speler_id_controle(speler_id)
+    team_id_controle(teamid)
+
     cursor = db_connection.cursor()
     cursor.execute("UPDATE spelers SET leeftijd = %s, statistiek = %s, team_id = %s WHERE speler_id = %s",
                    (spelerleeftijd, spelerstatistiek, teamid, speler_id))
     cursor.close()
-    return "speler gewijzigd"
-    raise HTTPException(status_code=404, detail="speler niet gevonden")
+    return "Speler gewijzigd"
+
 
 @spelers_router.delete('/spelers/{speler_id}')
 async def delete_speler(speler_id: int):
+    #controle
+    speler_id_controle(speler_id)
+
     cursor = db_connection.cursor()
     cursor.execute("DELETE FROM spelers WHERE speler_id = %s", (speler_id,))
     cursor.close()
-    return "speler verwijderd"
-    raise HTTPException(status_code=404, detail="speler niet gevonden")
+    return "Speler verwijderd"
