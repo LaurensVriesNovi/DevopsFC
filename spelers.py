@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter
 from database import fetch_tuples, db_connection
 from controles import leeftijf_controle, statestiek_controle, speler_id_controle, team_id_controle
 
@@ -49,13 +49,9 @@ async def get_spelers():
 @spelers_router.post('/spelers')
 async def create_speler(spelernaam: str, spelerland: str, spelerleeftijd: int, spelerstatistiek: int, teamid: int):
     # Controles
-    try:
-        leeftijf_controle(spelerleeftijd)
-        statestiek_controle(spelerstatistiek)
-        team_id_controle(teamid)
-    except HTTPException as e:
-        return e.detail, e.status_code
-
+    leeftijf_controle(spelerleeftijd)
+    statestiek_controle(spelerstatistiek)
+    team_id_controle(teamid)
     cursor = db_connection.cursor()
     cursor.execute("INSERT INTO spelers(naam, land, leeftijd, statistiek, team_id) VALUES (%s, %s, %s, %s, %s)",
                    (spelernaam, spelerland, spelerleeftijd, spelerstatistiek, teamid))
@@ -66,13 +62,10 @@ async def create_speler(spelernaam: str, spelerland: str, spelerleeftijd: int, s
 @spelers_router.put("/spelers/{speler_id}")
 async def update_speler(speler_id: int, spelerleeftijd: int, spelerstatistiek: int, teamid: int):
     #controles
-    try:
-        leeftijf_controle(spelerleeftijd)
-        statestiek_controle(spelerstatistiek)
-        speler_id_controle(speler_id)
-        team_id_controle(teamid)
-    except HTTPException as e:
-        return e.detail, e.status_code
+    leeftijf_controle(spelerleeftijd)
+    statestiek_controle(spelerstatistiek)
+    speler_id_controle(speler_id)
+    team_id_controle(teamid)
 
     cursor = db_connection.cursor()
     cursor.execute("UPDATE spelers SET leeftijd = %s, statistiek = %s, team_id = %s WHERE speler_id = %s",
@@ -84,10 +77,7 @@ async def update_speler(speler_id: int, spelerleeftijd: int, spelerstatistiek: i
 @spelers_router.delete('/spelers/{speler_id}')
 async def delete_speler(speler_id: int):
     #controle
-    try:
-        speler_id_controle(speler_id)
-    except HTTPException as e:
-        return e.detail, e.status_code
+    speler_id_controle(speler_id)
 
     cursor = db_connection.cursor()
     cursor.execute("DELETE FROM spelers WHERE speler_id = %s", (speler_id,))

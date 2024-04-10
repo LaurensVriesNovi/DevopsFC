@@ -153,3 +153,11 @@ def test_21_delete_speler():
 def test_22_put_speler():
     response = client.put("/spelers/10?spelerleeftijd=22&spelerstatistiek=60&teamid=1")
     assert response.status_code == 404
+
+def test_24_put_speler():
+    response = client.put("/spelers/1?spelerleeftijd=22&spelerstatistiek=0&teamid=1")
+    assert response.status_code == 400
+
+def test_25_put_speler():
+    response = client.put("/spelers/1?spelerleeftijd=22&spelerstatistiek=1000&teamid=1")
+    assert response.status_code == 400
