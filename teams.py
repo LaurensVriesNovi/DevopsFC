@@ -3,8 +3,10 @@ from database import fetch_tuples, db_connection
 
 teams_router = APIRouter()
 
+
 def get_team_tuples():
     return fetch_tuples("SELECT * FROM teams")
+
 
 @teams_router.get("/teams")
 async def get_teams():
@@ -15,12 +17,13 @@ async def get_teams():
     cursor.close()
     return teams
 
+
 @teams_router.post('/teams')
 async def create_team(teamnaam: str, competitie_id: int):
     cursor = db_connection.cursor()
-    
+
     # Controleer of de competitie bestaat
-    cursor.execute("SELECT * FROM competities WHERE id = %s", (competitie_id,))
+    cursor.execute("SELECT * FROM competities WHERE competitie_id = %s", (competitie_id,))
     competitie = cursor.fetchone()
     if competitie is None:
         cursor.close()
