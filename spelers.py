@@ -14,7 +14,7 @@ def waarde_berekenen(speler):
     if leeftijd_speler < 22:
         waarde_leeftijd = 50 + 8 * (leeftijd_speler - 16)
     elif leeftijd_speler > 22:
-        waarde_leeftijd = 100 - (leeftijd_speler - 22) * 4
+        waarde_leeftijd = 100 - (leeftijd_speler - 22) * 3
     else:
         waarde_leeftijd = 100
     totale_transferwaarde = int((waarde_leeftijd * (1 / 2 * speler[4])) * 10000)
