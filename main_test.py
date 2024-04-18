@@ -137,7 +137,7 @@ def test_waarde_berekenen_jonge_speler():
 #30400000
 def test_waarde_berekenen_oude_speler():
     speler = ("1", "John Doe", "Nederland", 30, 80, 1)
-    assert waarde_berekenen(speler) == 27200000
+    assert waarde_berekenen(speler) == 30400000
 
 
 def test_waarde_berekenen_gemiddelde_speler():
